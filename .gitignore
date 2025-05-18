@@ -1,0 +1,6 @@
+# custom ignores
+
+data/
+docs/
+storage/
+.env

@@ -1,0 +1,5 @@
+llama-index==0.10.32
+chromadb
+python-dotenv
+streamlit
+sentence-transformers
