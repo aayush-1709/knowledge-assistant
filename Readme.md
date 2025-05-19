@@ -34,8 +34,6 @@ An interactive Retrieval-Augmented Generation (RAG) chatbot that answers questio
 
 ---
 
-## 📁 Folder Structure
-
 
 💡 Example Use Case
 Suppose you upload your college syllabus or insurance policy. You can ask:
