@@ -43,7 +43,7 @@ It combines fast **MiniLM sentence embeddings**, a **persistent Chroma vector st
    pip install -r requirements.txt
    ```
 
-2. **Add your Gemini key**
+2. **Add your Gemini key in .env**
 
    ```bash
     GEMINI_API_KEY="your-key" (Create through https://aistudio.google.com/)
