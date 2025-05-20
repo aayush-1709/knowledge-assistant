@@ -13,7 +13,7 @@ load_dotenv()
 
 PERSIST_DIR = "./data/chroma"
 
-# @st.cache_resource
+
 def load_query_engine():
     embed_model = HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")
 
