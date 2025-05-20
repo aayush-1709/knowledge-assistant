@@ -1,45 +1,87 @@
-# 📚 Knowledge-Base Assistant
+# 📄 Knowledge‑Base Assistant
+# Insight AI
 
-An interactive Retrieval-Augmented Generation (RAG) chatbot that answers questions from your own documents (PDF, CSV, TXT, etc.) using powerful Large Language Models (LLMs) like OpenAI GPT or Hugging Face Transformers.
-
-## 🚀 What It Does
-
-1. **Upload Documents**  
-   Place your PDFs, CSVs, or TXT files in the `docs/` folder.
-
-2. **Generate Embeddings**  
-   Converts your documents into vector embeddings using OpenAI’s `text-embedding-3-small` (or Hugging Face models).
-
-3. **Store in a Vector DB**  
-   Uses ChromaDB for efficient storage and fast semantic retrieval of document chunks.
-
-4. **Index & Query**  
-   LlamaIndex builds a searchable index and queries the most relevant parts of your files.
-
-5. **Answer with Citations**  
-   A Streamlit chatbot answers your questions and provides source snippets for transparency.
+A **local‑first Retrieval‑Augmented Generation (RAG) chatbot** that lets you ask natural‑language questions about any set of documents.
+It combines fast **MiniLM sentence embeddings**, a **persistent Chroma vector store**, and **Google Gemini** to craft concise answers, all wrapped in a Streamlit UI and a simple CLI.
 
 ---
 
-## 🛠 Tech Stack
+## ✨ Features
 
-| Component           | Tool / Library                     | Purpose                              |
-|---------------------|------------------------------------|--------------------------------------|
-| LLM                 | OpenAI GPT / Hugging Face          | Answers your questions               |
-| Embedding Model     | OpenAI / Sentence-Transformers     | Converts docs into vectors           |
-| RAG Framework       | LlamaIndex                         | Ingestion, indexing, and querying    |
-| Vector Store        | ChromaDB                           | Stores & retrieves vector embeddings |
-| Interface           | Streamlit                          | Web-based chatbot UI                 |
-| Environment Config  | `dotenv` (`.env`)                  | API key management                   |
+| Category                  | What you get                                                                                        |
+| ------------------------- | --------------------------------------------------------------------------------------------------- |
+| **Local semantic search** | `all‑MiniLM‑L6‑v2` embeds every doc; Chroma stores vectors on disk so nothing re‑embeds on restart. |
+| **LLM answers**           | Gemini 2‑Pro summarizes the top‑k chunks into a coherent answer.                                    |
+| **Multiple interfaces**   | ⚡ Interactive **Streamlit** web app  •  🖥️ Lightweight **command‑line** loop.                      |
+| **One‑command ingestion** | Drop PDFs / TXTs / CSVs into `./docs` and run `python ingest.py`.                                   |
+| **Extensible**            | Swap in any Hugging Face or Google embedding model, or a different LLM response synthesizer.        |
 
 ---
 
+## 🏗️ Tech Stack
 
-💡 Example Use Case
-Suppose you upload your college syllabus or insurance policy. You can ask:
+* **Python 3.9 +**
+* **LlamaIndex** - indexing, retrieval, RAG utilities
+* **ChromaDB** – local vector database
+* **Sentence‑Transformers** (`all‑MiniLM‑L6‑v2`) – embeddings
+* **Google Gemini** via `llama-index-llms-google-genai`
+* **Streamlit** – web UI
 
-"What are the core AI subjects in the syllabus?"
+---
 
-"What does the policy say about medical emergencies?"
+## 📂 Project Layout
 
-The assistant finds and explains the answer, showing which page and document it came from.
+```
+.
+├── app.py            # Streamlit UI
+├── query.py          # Command‑line Q&A
+├── ingest.py         # One command doc ingestion
+├── docs/             # ← put your source documents here
+├── data/
+│   └── chroma/       # auto‑generated Chroma files (vectors + metadata)
+├── .env              # holds GOOGLE_API_KEY
+└── requirements.txt  # pip dependencies
+```
+
+---
+
+## 🚀 Quick Start
+
+1. **Clone & set up env**
+
+   ```
+   git clone https://github.com/aayush-1709/knowledge-assistant
+   python -m venv .venv && source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+2. **Add your Gemini key**
+
+   ``` GEMINI_API_KEY="your-key" (Create through https://aistudio.google.com/)
+   ```
+
+3. **Ingest documents**
+
+   ```bash
+   # copy your PDFs, TXTs, etc. into ./docs first
+   python ingest.py
+   ```
+
+4. **Ask questions**
+
+   * **CLI**
+
+     ```bash
+     python query.py
+     ```
+   * **Streamlit UI**
+
+     ```bash
+     streamlit run app.py
+     ```
+
+---
+
+## 🙏 Acknowledgements
+* [LlamaIndex](https://github.com/run-llama/llama_index) community for the RAG framework.
+* [Google AI Studio](https://ai.google.dev/) for access to Gemini.
