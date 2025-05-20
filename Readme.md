@@ -6,18 +6,6 @@ It combines fast **MiniLM sentence embeddings**, a **persistent Chroma vector st
 
 ---
 
-## ✨ Features
-
-| Category                  | What you get                                                                                        |
-| ------------------------- | --------------------------------------------------------------------------------------------------- |
-| **Local semantic search** | `all‑MiniLM‑L6‑v2` embeds every doc; Chroma stores vectors on disk so nothing re‑embeds on restart. |
-| **LLM answers**           | Gemini 2‑Pro summarizes the top‑k chunks into a coherent answer.                                    |
-| **Multiple interfaces**   | ⚡ Interactive **Streamlit** web app  •  🖥️ Lightweight **command‑line** loop.                      |
-| **One‑command ingestion** | Drop PDFs / TXTs / CSVs into `./docs` and run `python ingest.py`.                                   |
-| **Extensible**            | Swap in any Hugging Face or Google embedding model, or a different LLM response synthesizer.        |
-
----
-
 ## 🏗️ Tech Stack
 
 * **Python 3.9 +**
@@ -57,7 +45,8 @@ It combines fast **MiniLM sentence embeddings**, a **persistent Chroma vector st
 
 2. **Add your Gemini key**
 
-   ``` GEMINI_API_KEY="your-key" (Create through https://aistudio.google.com/)
+   ```bash
+    GEMINI_API_KEY="your-key" (Create through https://aistudio.google.com/)
    ```
 
 3. **Ingest documents**
